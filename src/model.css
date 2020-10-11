@@ -1,0 +1,32 @@
+* {
+    margin: 0;
+  }
+  div {
+    padding: 0.5em;
+  }
+  .open {
+    position: absolute;
+    position: fixed;
+    background-color: rgba(82, 82, 82, 0.212);
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 100vw;
+    z-index: 10;
+  }
+  .section {
+    box-shadow: 1px 1px 20px rgb(26, 25, 25);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    background-color: rgb(20, 20, 20);
+    height: 200px;
+    width: 300px;
+    padding: 1em;
+    border-radius: 10px;
+  }
+  .hidden {
+    display: none;
+  }

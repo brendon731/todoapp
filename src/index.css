@@ -1,0 +1,119 @@
+.App {
+  font-family: sans-serif;
+  font-size: 15px;
+  text-align: center;
+}
+body {
+  background-color: rgb(250, 233, 216);
+}
+.item {
+  position: relative;
+  word-break: break-all;
+  padding: 0.5em;
+  margin-top: 0.5em;
+  background-color: rgba(255, 255, 255, 0.658);
+  border-radius: 5px;
+  width:88%;
+}
+.done {
+  border: 1px solid green;
+}
+input,
+select,
+button {
+  padding: 0.1em;
+  font-size: 20px;
+  margin: 0.5em 0;
+  outline: none;
+}
+button {
+  padding: 0.5em;
+}
+input {
+  box-sizing: border-box;
+  margin-right: 0.5em;
+  padding: 0.5em;
+}
+.input{
+    width: 80%;
+}
+#checkbox {
+  float: right;
+}
+span {
+  float: right;
+  display: block;
+  width: 40px;
+  height: 20px;
+  border: 1px solid rgb(54, 52, 52);
+  border-radius: 50px;
+}
+span:after {
+  box-sizing: border-box;
+  content: " ";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50px;
+  background-color: rgb(70, 60, 60);
+  transition: 0.5s;
+}
+#checkbox:checked + span:after {
+  transform: translateX(100%);
+  background-color: rgb(70, 60, 60);
+}
+li {
+  list-style: none;
+  display: inline-block;
+  font-size: 20px;
+  margin-right: 4em;
+  padding-left: 0.5em;
+  
+}
+i,
+span,
+button,
+input[type="submit"],
+select {
+  cursor: pointer;
+}
+.fa-trash {
+  color: grey;
+  position: absolute;
+  right: 1em;
+  top: 20px;
+  transform: translateY(-50%);
+}
+.fa-edit {
+  color: grey;
+  position: absolute;
+  right: 2.5em;
+  top: 20px;
+  transform: translateY(-50%);
+}
+.fa-check-circle {
+  position: absolute;
+  right: 3.5em;
+}
+label {
+  display: block;
+}
+
+.dark {
+  background-color: rgb(15, 15, 15);
+  color: white;
+}
+.dark .item {
+  background-color: rgba(40, 41, 41, 0.582);
+}
+.dark input,
+.dark select,
+.dark button {
+  background-color: rgb(54, 52, 52);
+  border: none;
+  color: white;
+}
+.main{
+    width:70%;
+    margin:auto;
+}
