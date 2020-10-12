@@ -67,11 +67,15 @@ export default function App() {
 
   const handleRemove = useCallback(
     (id) => {
-      setTodoList(
-        todoList.filter((e) => {
-          return e.id !== id;
-        })
-      );
+      if(confirm("Are you sure you want to remove?")){
+
+        setTodoList(
+          todoList.filter((e) => {
+            return e.id !== id;
+          })
+        )
+      }
+      
     },
     [setTodoList, todoList]
   );
