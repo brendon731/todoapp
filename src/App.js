@@ -28,6 +28,11 @@ export default function App() {
   );
 
   useEffect(() => {
+    setTodoList(JSON.parse(localStorage.getItem("todolist/user")));
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("todolist/user", JSON.stringify(todoList));
     setView([...todoList]);
   }, [todoList]);
 
