@@ -26,12 +26,17 @@ export default function App() {
     },
     [setTodoList, todo, todoList]
   );
-
+  
   useEffect(() => {
-    setTodoList(JSON.parse(localStorage.getItem("todolist/user")));
+    if(JSON.parse(localStorage.getItem("todolist/user"))===null){ 
+      setTodoList([])
+    }else{
+      setTodoList(JSON.parse(localStorage.getItem("todolist/user")));
+    }
   }, []);
-
+  
   useEffect(() => {
+    
     localStorage.setItem("todolist/user", JSON.stringify(todoList));
     setView([...todoList]);
   }, [todoList]);
