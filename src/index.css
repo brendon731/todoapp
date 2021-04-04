@@ -78,21 +78,21 @@ input[type="submit"],
 select {
   cursor: pointer;
 }
-.fa-trash {
+.trash {
   color: grey;
   position: absolute;
   right: 1em;
   top: 20px;
   transform: translateY(-50%);
 }
-.fa-edit {
+.edit {
   color: grey;
   position: absolute;
   right: 2.5em;
   top: 20px;
   transform: translateY(-50%);
 }
-.fa-check-circle {
+.circle {
   position: absolute;
   right: 3.5em;
 }

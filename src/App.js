@@ -2,14 +2,13 @@ import React, { useCallback, useState, useEffect } from "react";
 import "./index.css";
 import "./model.css";
 
-//import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-/*import {
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
   faCheckCircle,
   faTrash,
   faEdit
-  
 } from "@fortawesome/free-solid-svg-icons";
-*/
+
 let random = 10;
 export default function App() {
   const [todo, setTodo] = useState("");
@@ -171,32 +170,33 @@ export default function App() {
 
             <div className={[e.done ? "done" : null, "item"].join(" ")}>
               <i
-                className={[e.done ? "fas" : "far", "fa-check-circle"].join(
-                  " "
-                )}
-                style={{ fontSize: "25px", color:e.done ? "green" : "grey" }}
+                className="circle"
+                style={{ fontSize: "25px"}}
                 onClick={(evet) => {
                   handleCheck(e, i, evet);
                 }}
-              >
+              ><FontAwesomeIcon icon={faCheckCircle} color ={e.done ? "green" : "grey"}/>
+
               </i>
               <input hidden type="checkbox" />
               <li style={{ paddingRight: "2em" }}>{e.item}</li>
               <i
-                className="fas fa-trash"
+                className="trash"
                 style={{ fontSize: "20px" }}
                 onClick={() => {
                   handleRemove(e.id);
                 }}
-              >
+              ><FontAwesomeIcon icon={faTrash}/>
+              
               </i>
               <i
-                className="fas fa-edit"
+                className="edit"
                 style={{ fontSize: "20px" }}
                 onClick={() => {
                   handleEdit(e, e.id);
                 }}
-              >
+                ><FontAwesomeIcon icon={faEdit}/>
+              
               </i>
               
             </div>
