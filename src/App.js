@@ -2,6 +2,14 @@ import React, { useCallback, useState, useEffect } from "react";
 import "./index.css";
 import "./model.css";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faTrash,
+  faCheck,
+  faCheckCircle,
+  faEdit
+} from "@fortawesome/free-solid-svg-icons";
+
 let random = 10;
 export default function App() {
   const [todo, setTodo] = useState("");
@@ -166,11 +174,12 @@ export default function App() {
                 className={[e.done ? "fas" : "far", "fa-check-circle"].join(
                   " "
                 )}
-                style={{ fontSize: "25px", color: e.done ? "green" : "grey" }}
+                style={{ fontSize: "25px" }}
                 onClick={(evet) => {
                   handleCheck(e, i, evet);
                 }}
-              ></i>
+              ><FontAwesomeIcon icon={faCheckCircle} color={e.done ? "green" : "grey"}/>
+              </i>
               <input hidden type="checkbox" />
               <li style={{ paddingRight: "2em" }}>{e.item}</li>
               <i
