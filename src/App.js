@@ -9,7 +9,6 @@ import {
   faEdit
 } from "@fortawesome/free-solid-svg-icons";
 
-let random = 10;
 export default function App() {
   const [todo, setTodo] = useState("");
   const [todoList, setTodoList] = useState([]);
@@ -17,6 +16,7 @@ export default function App() {
   const [select, setSelect] = useState("all");
   const [open, isOpen] = useState(false);
   const [edit, setEdit] = useState([]);
+  let time = new Date().getTime()
 
   const handleSubmit = useCallback(
     (evt) => {
@@ -24,7 +24,7 @@ export default function App() {
       setTodoList([
         {
           item: todo,
-          id: (random += 1),
+          id: time,
           done: false
         },
         ...todoList
