@@ -2,7 +2,7 @@ import React, { useCallback, useState, useEffect } from "react";
 import "./index.css";
 import "./model.css";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+//import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 /*import {
   faCheckCircle,
   faTrash,
