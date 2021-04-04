@@ -16,22 +16,22 @@ export default function App() {
   const [select, setSelect] = useState("all");
   const [open, isOpen] = useState(false);
   const [edit, setEdit] = useState([]);
-  let time = new Date().getTime()
 
+  
   const handleSubmit = useCallback(
     (evt) => {
       evt.preventDefault();
       setTodoList([
         {
           item: todo,
-          id: time,
+          id: new Date().getTime(),
           done: false
         },
         ...todoList
       ]);
       setTodo("");
     },
-    [setTodoList, todo, todoList]
+    [setTodoList, todo, todoList, time]
   );
   
   useEffect(() => {
