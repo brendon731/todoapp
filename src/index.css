@@ -14,7 +14,7 @@ body {
   background-color: rgba(255, 255, 255, 0.658);
   border-radius: 5px;
   width:95%;
-  max-width:900px;
+  max-width:850px;
 }
 .done {
   border: 1px solid green;
