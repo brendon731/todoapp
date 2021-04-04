@@ -4,10 +4,8 @@ import "./model.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faTrash,
-  faCheck,
   faCheckCircle,
-  faEdit
+  
 } from "@fortawesome/free-solid-svg-icons";
 
 let random = 10;
