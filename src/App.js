@@ -5,6 +5,8 @@ import "./model.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCheckCircle,
+  faTrash,
+  faEdit
   
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -186,14 +188,16 @@ export default function App() {
                 onClick={() => {
                   handleRemove(e.id);
                 }}
-              ></i>
+              >
+              <FontAwesomeIcon icon={faTrash} /></i>
               <i
                 className="fas fa-edit"
                 style={{ fontSize: "20px" }}
                 onClick={() => {
                   handleEdit(e, e.id);
                 }}
-              ></i>
+              ><FontAwesomeIcon icon={faEdit} />
+              </i>
               
             </div>
           </>
