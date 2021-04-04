@@ -115,6 +115,7 @@ label {
   color: white;
 }
 .main{
-    width:70%;
+    width:95%;
+    max-width:900px;
     margin:auto;
 }
