@@ -31,7 +31,7 @@ export default function App() {
       ]);
       setTodo("");
     },
-    [setTodoList, todo, todoList, time]
+    [setTodoList, todo, todoList]
   );
   
   useEffect(() => {
