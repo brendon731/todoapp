@@ -1,6 +1,6 @@
 import React, { useCallback, useState, useEffect } from "react";
 import "./index.css";
-import "./model.css";
+import "./modal.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -16,6 +16,8 @@ export default function App() {
   const [select, setSelect] = useState("all");
   const [open, isOpen] = useState(false);
   const [edit, setEdit] = useState([]);
+  const [isDisabled, setIsDisabled] = useState(true)
+  const [isDark, setIsDark] = useState(false)
 
   
   const handleSubmit = useCallback(
@@ -25,7 +27,8 @@ export default function App() {
         {
           item: todo,
           id: new Date().getTime(),
-          done: false
+          done: false,
+          remove:false
         },
         ...todoList
       ]);
@@ -49,7 +52,7 @@ export default function App() {
   }, [todoList]);
 
   const handleCheck = useCallback(
-    (e, i, evt) => {
+    (i) => {
       const newtodo = [...todoList];
       newtodo[i].done = !newtodo[i].done;
       setTodoList(newtodo);
@@ -78,17 +81,21 @@ export default function App() {
     }
   }, [select, setView, todoList]);
 
-  const handledark = useCallback(() => {
-    document.getElementById("root").parentElement.classList.toggle("dark");
-  }, []);
+  useEffect(()=>{
+    setIsDark(JSON.parse(localStorage.getItem("dark-mode")))
+  },[])
 
+  useEffect(()=>{
+    localStorage.setItem("dark-mode", JSON.stringify(isDark));
+  },[isDark])
+  
   const handleRemove = useCallback(
-    (id) => {
-      if(window.confirm("Are you sure you want to remove?")){
+    () => {
+      if(window.confirm("Are you sure you want to remove these itens?")){
 
         setTodoList(
           todoList.filter((e) => {
-            return e.id !== id;
+             return e.remove === false;
           })
         )
       }
@@ -130,10 +137,42 @@ export default function App() {
     );
   }, [setTodoList, todoList, open, isOpen, edit]);
 
+  const handleSelectRemove = useCallback(
+    (i) => {
+      const newtodo = [...todoList];
+      newtodo[i].remove = !newtodo[i].remove;
+      setTodoList(newtodo);
+    },
+    [todoList]
+  );
+
+  useEffect(()=>{
+    if(todoList.length === 0){
+      setIsDisabled(true)
+    }else{
+      for(let a=0; a<todoList.length; a++){
+        if(todoList[a].remove === true){
+          setIsDisabled(false)
+          break
+        }else{
+          setIsDisabled(true)
+        }
+      }
+    }
+  },[todoList])
+
+  const handleClear = useCallback(()=>{
+    if(window.confirm("Are you sure you want to remove everything?")){
+      setTodoList([])
+    }
+  },[])
+
   return (
-    <div className="main">
+    <div className={isDark?"dark":null}>
+    <div className="main" >
+      
       <label>
-        <input hidden type="checkbox" id="checkbox" onChange={handledark} />
+        <input hidden type="checkbox" id="checkbox" onChange={()=>{setIsDark(!isDark)}} />
         <span></span>
       </label>
       <form onSubmit={handleSubmit}>
@@ -147,20 +186,35 @@ export default function App() {
         />
         <input type="submit" value="Add todo"/>
       </form>
+      <div className="container-remove">
 
-      <select
-        onChange={(evt) => {
-          setSelect(evt.target.value);
-        }}
-      >
-        <option>All</option>
-        <option>Done</option>
-        <option>To Do</option>
-      </select>
+        <select
+          onChange={(evt) => {
+            setSelect(evt.target.value);
+          }}
+          >
+          <option>All</option>
+          <option>Done</option>
+          <option>To Do</option>
+        </select>
+          <button 
+          style={{color:todoList.length===0?"grey":null}}
+          className="clear" 
+          disabled={todoList.length===0}
+          onClick={()=>{handleClear()}}>
+            Clear
+          </button>
 
+          <button 
+          style={{color:isDisabled?"grey":null}}
+          className="remove-button" 
+          disabled={isDisabled} onClick={()=>{handleRemove()}}>
+            Remove Selected
+          </button>
+          </div>
       {view.map((e, i) => {
         return (
-          <>
+          <div key={e.item+i}>
             <div className={open ? "open" : "hidden"}>
               <section className="section">
                 <input onChange={handleEditing} type="text" value={edit[0]} />
@@ -172,8 +226,8 @@ export default function App() {
               <i
                 className="circle"
                 style={{ fontSize: "25px"}}
-                onClick={(evet) => {
-                  handleCheck(e, i, evet);
+                onClick={() => {
+                  handleCheck(i);
                 }}
               ><FontAwesomeIcon icon={faCheckCircle} color ={e.done ? "green" : "grey"}/>
 
@@ -184,9 +238,9 @@ export default function App() {
                 className="trash"
                 style={{ fontSize: "20px" }}
                 onClick={() => {
-                  handleRemove(e.id);
+                  handleSelectRemove(i);
                 }}
-              ><FontAwesomeIcon icon={faTrash}/>
+              ><FontAwesomeIcon icon={faTrash} color={e.remove?"red":"grey"}/>
               
               </i>
               <i
@@ -200,9 +254,10 @@ export default function App() {
               </i>
               
             </div>
-          </>
+          </div>
         );
       })}
+    </div>
     </div>
   );
 }
