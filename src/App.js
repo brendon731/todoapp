@@ -170,9 +170,13 @@ export default function App() {
 
   return (
     <div className={isDark?"dark":null}>
-      
+      <div className={open ? "open" : "hidden"}>
+        <section className="section">
+          <input onChange={handleEditing} type="text" value={edit[0]} className="modal-input"/>
+          <button onClick={handleConfirm} >confirm</button>
+        </section>
+      </div>
     <div className="main" >
-      
       <label>
         <input hidden type="checkbox" id="checkbox" onChange={()=>{setIsDark(!isDark)}} />
         <span></span>
@@ -216,14 +220,8 @@ export default function App() {
           </div>
       {view.map((e, i) => {
         return (
-          <div key={e.item+i}>
-            <div className={open ? "open" : "hidden"}>
-              <section className="section">
-                <input onChange={handleEditing} type="text" value={edit[0]} className="modal-input"/>
-                <button onClick={handleConfirm} >confirm</button>
-              </section>
-            </div>
-
+          <div key={e.id}>
+            
             <div className={[e.done ? "done" : null, "item"].join(" ")}>
               <i
                 className="circle"
@@ -235,7 +233,7 @@ export default function App() {
 
               </i>
               <input hidden type="checkbox" />
-              <li style={{ paddingRight: "2em" }}>{e.item}</li>
+              <li style={{ paddingRight: "2em"}}>{e.item}</li>
               <i
                 className="trash"
                 style={{ fontSize: "20px" }}
