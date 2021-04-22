@@ -128,7 +128,8 @@ export default function App() {
           return {
             item: edit[0],
             id: e.id,
-            done: e.done
+            done: e.done,
+            remove:e.remove
           };
         } else {
           return e;
@@ -139,7 +140,7 @@ export default function App() {
 
   const handleSelectRemove = useCallback(
     (i) => {
-      const newtodo = [...todoList];
+      let newtodo = [...todoList];
       newtodo[i].remove = !newtodo[i].remove;
       setTodoList(newtodo);
     },
@@ -169,6 +170,7 @@ export default function App() {
 
   return (
     <div className={isDark?"dark":null}>
+      
     <div className="main" >
       
       <label>
