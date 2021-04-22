@@ -217,7 +217,7 @@ export default function App() {
           <div key={e.item+i}>
             <div className={open ? "open" : "hidden"}>
               <section className="section">
-                <input onChange={handleEditing} type="text" value={edit[0]} />
+                <input onChange={handleEditing} type="text" value={edit[0]} className="modal-input"/>
                 <button onClick={handleConfirm} >confirm</button>
               </section>
             </div>
