@@ -67,7 +67,6 @@ li {
   font-size: 20px;
   margin-right: 4em;
   padding-left: 0.5em;
-  display: flex;
   word-break: keep-all;
 }
 i,
